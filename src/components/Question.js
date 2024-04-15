@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 function Question({ question, onAnswered }) {
   const [timeRemaining, setTimeRemaining] = useState(10);
+  const [, setOnAnswered] = useState(onAnswered);
 
   // add useEffect code
   useEffect(() => {
@@ -10,7 +11,7 @@ function Question({ question, onAnswered }) {
         setTimeRemaining(timeRemaining - 1)
        } else {
         setTimeRemaining(10);
-        onAnswered(false);
+        handleMissAnswer(false);
        } 
     },1000)
     
@@ -20,6 +21,10 @@ function Question({ question, onAnswered }) {
 
 
   })
+
+  function handleMissAnswer (a) {
+    onAnswered(a);
+  }
 
   function handleAnswer(isCorrect) {
     setTimeRemaining(10);
